@@ -1,5 +1,5 @@
-import './App.css';
-import BlackFrugalList from './frugalList';
+import BlackFrugalList from './Components/FrugalList';
+import './index.css';
 
 /* Export from frugalList */
 
