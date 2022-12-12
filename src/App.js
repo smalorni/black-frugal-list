@@ -1,12 +1,17 @@
 import BlackFrugalList from './Components/FrugalList';
+import NavBar from './Components/NavBar';
+import React from 'react';
 import './index.css';
+import ListForm from './Components/ListForm';
 
 /* Export from frugalList */
 
-function App() {
+const App = () => {
   return (
     <div>
-     <BlackFrugalList/>
+      <NavBar/>
+      <BlackFrugalList/>
+      <ListForm/>
     </div>
   );
 }

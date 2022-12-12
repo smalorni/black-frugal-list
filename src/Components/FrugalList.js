@@ -1,49 +1,68 @@
-import "./index.css";
-import { getAllListItems, editListItem, deleteListItem } from "../API Managers/API";
-import { useState, useEffect }from "react"
-
+import React from "react";
+import { getAllListItems, deleteListItem, editListItem } from "../Managers/API";
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
 
 /* Create our main list */
 
 const BlackFrugalList = () => {
+    const navigate = useNavigate();
 
-    /* Local storage location */
-    const localFrugalUser = localStorage.getItem('localFrugalUser');
-    const localFrugalUserObject = JSON.parse(localFrugalUser);
-
-
-    /* Set State */
+    //set state for list items
     const [listItems, setListItems] = useState([]);
+    
 
-    /* Set useEffect to get all list items from API */
-    useEffect(() => {
+    //get all list items from API
+    const getListItems = () => { 
         getAllListItems()
-            .then(setListItems)
-        }, 
-            []
-        );
+            .then(setListItems);
+    }
 
-        /* return JSX */
-    return <>
-            <div className="container mx-auto bg bg-gray-600 rounded-md shadow-md flex items-center justify-center">
-                <div>
-                    <h2 className="text-5xl text-white font-sans">Black Frugal</h2>
-                        <p>Is a deal or not a deal?</p>
-                </div>
+    //delete list item from API
+    const deleteItem = (id) => {
+        deleteListItem(id)
+            .then(getListItems);
+    }
 
-                <div>
+    //edit list item from API
+    const editItem = (id) => {
+        editListItem(id)
+            .then(getListItems);
+    }
+
+  
+    //use effect to get list items
+    useEffect(() => {
+        getListItems();
+    }
+    , []);
+
+    //render the list of items into JSX
+    return (
+        <div className="bg-red-500">
+                <h1 className="text-white">My Black Frugal List</h1>
+                <button onClick={() => navigate('/lists/add')}>Add New Item</button>
+                <section>
                     <ul>
-                        {
-                            listItems.map(listItem => {
-                                return <li key={`listItem--${listItem.id}`}>{listItem.name}</li>
+                        {listItems.map((item) => {
+                            return (
+                                <li key={item.id}>
+                                    <div className="listItem">
+                                        
+                                        <label>Name of Item</label><p>{item.itemName}</p>
+                                        <label>Current Price</label><p>${item.price}</p>
+                                        <label>Store</label><p>{item.store}</p>
 
+                                        <button className="deleteButton" onClick={() => deleteItem(item.id)}>Delete</button>
+                                        <button className="editButton" onClick={() => editItem(item.id)}>Edit</button>
+                                    </div>
+                                </li>
+                            )
                         })}
-                    </ul>
-                </div>
-            </div>
-        </>
-}
+                    </ul>                       
+                </section>
+        </div>
+    )
+};          
 
-//export default BlackFrugalList
-export default BlackFrugalList
-
+export default BlackFrugalList;
