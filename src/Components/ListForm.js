@@ -24,7 +24,8 @@ const ListForm = () => {
 
     //return the form to add a new item to the list - JSX
     return (
-        <div className="bg-red-500">
+        <div className="bg-blue-600 border-spacing-3 rounded" >
+            <div className='flex flex-row justify-center'>
             <h1>New Item</h1>
             <form>
 
@@ -43,6 +44,7 @@ const ListForm = () => {
                 }}>Add New Item</button>
 
             </form>
+            </div>
         </div>  
 
     )

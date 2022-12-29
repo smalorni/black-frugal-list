@@ -2,6 +2,7 @@ import React from "react";
 import { getAllListItems, deleteListItem, editListItem } from "../Managers/API";
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
+import {BiAddToQueue } from "react-icons/bi";
 
 /* Create our main list */
 
@@ -39,22 +40,27 @@ const BlackFrugalList = () => {
 
     //render the list of items into JSX
     return (
-        <div className="bg-red-500">
-                <h1 className="text-white">My Black Frugal List</h1>
-                <button onClick={() => navigate('/lists/add')}>Add New Item</button>
+        <div>
+            
+                <h1 class="text-white center font-bold text-xl text-center mb-2">My List</h1>
+                <button onClick={() => navigate('/lists/add')}><BiAddToQueue size={40}/></button>
                 <section>
                     <ul>
                         {listItems.map((item) => {
                             return (
                                 <li key={item.id}>
-                                    <div className="listItem">
-                                        
-                                        <label>Name of Item</label><p>{item.itemName}</p>
-                                        <label>Current Price</label><p>${item.price}</p>
-                                        <label>Store</label><p>{item.store}</p>
-
-                                        <button className="deleteButton" onClick={() => deleteItem(item.id)}>Delete</button>
-                                        <button className="editButton" onClick={() => editItem(item.id)}>Edit</button>
+                                    <div class="container flex-direction:row px-8 py-2 mx-auto rounded-md bg-slate-100 text-black border m-6 w-96">
+                                        <div class="flex flex-wrap m-3">
+                                            <div>
+                                                <div>
+                                                <div class="py-2"><label class="font-bold">Name of Item</label><p>{item.itemName}</p></div>
+                                                <div class="py-2"><label class="font-bold">Current Price</label><p>${item.price}</p></div>
+                                                <div class="py-2"><label class="font-bold">Store Name</label><p>{item.store}</p></div>
+                                                <div class="text-center"><button class="py-3" onClick={() => deleteItem(item.id)}>Delete</button>
+                                                <button class="px-2" onClick={() => editItem(item.id)}>Edit</button></div>
+                                                </div>
+                                            </div>
+                                        </div>  
                                     </div>
                                 </li>
                             )
