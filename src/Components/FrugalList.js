@@ -1,8 +1,8 @@
 import React from "react";
 import { getAllListItems, deleteListItem, editListItem } from "../Managers/API";
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom";
-import {BiAddToQueue } from "react-icons/bi";
+// import { useNavigate } from "react-router-dom";
+import { editItem } from "./EditItem";
 
 /* Create our main list */
 
@@ -49,7 +49,7 @@ const BlackFrugalList = () => {
                             return (
                                 <li key={item.id}>
                                     <div class="h-72 rounded-md bg-slate-100 text-black border m-6 w-96">
-                                        <div class="flex flex-wrap m-3">
+                                        <div class="flex flex-wrap m-4">
                                             <div>
                                                 <div>
                                                 <div class="py-2"><label class="font-bold">Name of Item</label><p>{item.itemName}</p></div>

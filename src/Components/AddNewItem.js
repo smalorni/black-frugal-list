@@ -4,7 +4,7 @@ import { addListItem } from '../Managers/API';
 
 /* Create a form to add a new item to the list */
 
-const ListForm = () => {
+const AddItem = () => {
     const navigate = useNavigate();
 
 //set state to add item to the list
@@ -49,4 +49,4 @@ const ListForm = () => {
     )
 }
 
-export default ListForm;
+export default AddItem;

@@ -2,7 +2,7 @@ import BlackFrugalList from './Components/FrugalList';
 import NavBar from './Components/NavBar';
 import React from 'react';
 import './index.css';
-import ListForm from './Components/ListForm';
+import AddItem from './Components/AddNewItem';
 
 /* Export from frugalList */
 
@@ -11,7 +11,7 @@ const App = () => {
     <div>
       <NavBar/>
       <BlackFrugalList/>
-      <ListForm/>
+      <AddItem/>
     </div>
   );
 }
