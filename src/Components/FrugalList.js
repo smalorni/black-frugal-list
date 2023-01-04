@@ -7,8 +7,7 @@ import {BiAddToQueue } from "react-icons/bi";
 /* Create our main list */
 
 const BlackFrugalList = () => {
-    const navigate = useNavigate();
-
+  
     //set state for list items
     const [listItems, setListItems] = useState([]);
     
@@ -42,22 +41,22 @@ const BlackFrugalList = () => {
     return (
         <div>
             
-                <h1 class="text-white center font-bold text-xl text-center mb-2">My List</h1>
-                <button onClick={() => navigate('/lists/add')}><BiAddToQueue size={40}/></button>
+                <h1 class="text-white center font-bold text-xl text-center">My List</h1>
+                
                 <section>
-                    <ul>
+                    <ul class="flex flex-row flex-wrap px-20 py-2 mx-auto">
                         {listItems.map((item) => {
                             return (
                                 <li key={item.id}>
-                                    <div class="container flex-direction:row px-8 py-2 mx-auto rounded-md bg-slate-100 text-black border m-6 w-96">
+                                    <div class="h-72 rounded-md bg-slate-100 text-black border m-6 w-96">
                                         <div class="flex flex-wrap m-3">
                                             <div>
                                                 <div>
                                                 <div class="py-2"><label class="font-bold">Name of Item</label><p>{item.itemName}</p></div>
                                                 <div class="py-2"><label class="font-bold">Current Price</label><p>${item.price}</p></div>
                                                 <div class="py-2"><label class="font-bold">Store Name</label><p>{item.store}</p></div>
-                                                <div class="text-center"><button class="py-3" onClick={() => deleteItem(item.id)}>Delete</button>
-                                                <button class="px-2" onClick={() => editItem(item.id)}>Edit</button></div>
+                                                <div><button class="py-1 border border-black rounded px-2 mr-3" onClick={() => deleteItem(item.id)}>Delete</button>
+                                                <button class="py-1 border border-black rounded px-2" onClick={() => editItem(item.id)}>Edit</button></div>
                                                 </div>
                                             </div>
                                         </div>  
