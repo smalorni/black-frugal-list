@@ -26,7 +26,7 @@ const AddItem = () => {
     return (
         <div className=" text-black" >
             <div class=" py-6">
-            <h1 class="text-center mb-6 text-xl">Add New Item</h1>
+            <h1 class="text-center mb-6 text-xl text-white">Add A New Item To List</h1>
             <form class="text-center">
                 <label class="mr-4 text-white">Name of Item</label>
                 <input type="text" name="itemName" value={addItem.itemName} onChange={changeEventState}></input>

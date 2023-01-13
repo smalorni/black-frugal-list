@@ -1,6 +1,7 @@
 /* Json database */
 
 /* Get all items for the list */
+//?&userId={frugalUserObject.id}
 export const getAllListItems = () => {
     return fetch(`http://localhost:8088/lists`)
     .then(res => res.json())

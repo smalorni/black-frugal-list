@@ -4,14 +4,17 @@ import React from 'react';
 import './index.css';
 import AddItem from './Components/AddNewItem';
 
-/* Export from frugalList */
+
+//this is how the app is viewed on page from components - should be in order of how it appears on page
 
 const App = () => {
   return (
     <div>
       <NavBar/>
-      <BlackFrugalList/>
       <AddItem/>
+      <BlackFrugalList/>
+      
+      
     </div>
   );
 }

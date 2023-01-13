@@ -1,16 +1,25 @@
 import React from "react";
 import { getAllListItems, deleteListItem, editListItem } from "../Managers/API";
 import { useState, useEffect } from "react"
-// import { useNavigate } from "react-router-dom";
-import { editItem } from "./EditItem";
+import EditItem from "./EditItem";
+
 
 /* Create our main list */
 
 const BlackFrugalList = () => {
-  
+
+    //set local storage to save data
+    const [saveData, setSaveData] = useState(()=> {
+        const localStorageData = localStorage.getItem("saveData");
+        if (localStorageData) {
+            return JSON.parse(localStorageData);
+        } else {
+            return [];
+        }
+    });
+
     //set state for list items
     const [listItems, setListItems] = useState([]);
-    
 
     //get all list items from API
     const getListItems = () => { 
@@ -30,19 +39,34 @@ const BlackFrugalList = () => {
             .then(getListItems);
     }
 
-  
+    //use effect to save data to local storage
+    useEffect(() => {
+        localStorage.setItem("saveData", JSON.stringify(saveData));
+    }, [saveData]);
+        
     //use effect to get list items
     useEffect(() => {
         getListItems();
-    }
-    , []);
+    }, []);
+
+    //edit use effect for edit item
+    useEffect(() => {
+        editItem();
+    });
+
+
+
+    //use effect to get list items from API
+    
+
+
 
     //render the list of items into JSX
     return (
         <div>
             
                 <h1 class="text-white center font-bold text-xl text-center">My List</h1>
-                
+               
                 <section>
                     <ul class="flex flex-row flex-wrap px-20 py-2 mx-auto">
                         {listItems.map((item) => {
@@ -56,7 +80,8 @@ const BlackFrugalList = () => {
                                                 <div class="py-2"><label class="font-bold">Current Price</label><p>${item.price}</p></div>
                                                 <div class="py-2"><label class="font-bold">Store Name</label><p>{item.store}</p></div>
                                                 <div><button class="py-1 border border-black rounded px-2 mr-3" onClick={() => deleteItem(item.id)}>Delete</button>
-                                                <button class="py-1 border border-black rounded px-2" onClick={() => editItem(item.id)}>Edit</button></div>
+                                                <button class="py-1 border border-black rounded px-2" onClick={() => editItem(item.id)}>
+                                                    <div></div>Edit</button></div>
                                                 </div>
                                             </div>
                                         </div>  
